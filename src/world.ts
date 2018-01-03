@@ -6,3 +6,7 @@ export const scale = new magic.Value<music.Scale>({
 	base: 60,
 	pegs: [0, 2, 3, 5, 7, 9, 11],
 })
+
+export const selectedColor = "#666"
+export const borderColor = "#DDD"
+export const noteSize = 30

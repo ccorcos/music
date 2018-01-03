@@ -2,11 +2,21 @@ import * as React from "react"
 import * as ReactDOM from "react-dom"
 import ReactRenderer from "markdown-it-renderer/ReactRenderer"
 import * as MarkdownItComponent from "markdown-it-component"
-import * as ast from "./article.md"
-import Scale from "./components/Scale"
 import "./style"
+import * as ast from "./article.md"
+import LinearScale from "./components/LinearScale"
+import CircleScale from "./components/CircleScale"
+import PianoScale from "./components/PianoScale"
+import GuitarScale from "./components/GuitarScale"
+import LinearStackScale from "./components/LinearStackScale"
 
-const components = { Scale }
+const components = {
+	LinearScale,
+	CircleScale,
+	PianoScale,
+	GuitarScale,
+	LinearStackScale,
+}
 
 const renderer = new ReactRenderer({
 	tag: (name, props: any, children) => {

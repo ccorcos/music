@@ -1,11 +1,11 @@
 # Music
 
-[Scale]{type: "linear-stack"}
+[LinearStackScale]{}
 
-[Scale]{type: "piano"}
+[PianoScale]{}
 
-[Scale]{type: "linear"}
+[LinearScale]{}
 
-[Scale]{type: "circle"}
+[CircleScale]{}
 
-[Scale]{type: "guitar"}
+[GuitarScale]{}
