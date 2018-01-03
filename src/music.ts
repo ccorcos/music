@@ -1,6 +1,6 @@
 export interface Notes {
 	// A list of midi notes
-	notes: Array<string>
+	notes: Array<number>
 }
 
 export interface Scale {
