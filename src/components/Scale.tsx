@@ -7,6 +7,15 @@ const selected = "#666"
 const noteSize = 30
 const margin = 1.4
 
+const togglePeg = (index: number) => () => {
+	world.scale.update(({ base, pegs }) => {
+		return {
+			base,
+			pegs: music.togglePeg(pegs, index),
+		}
+	})
+}
+
 export class LinearScale extends Component {
 	view() {
 		const scale = world.scale.get()
@@ -31,10 +40,11 @@ export class LinearScale extends Component {
 						borderRadius: scaleSize,
 					}}
 				/>
-				{music.pegsToBools(scale.pegs).map((bool, index) => {
+				{music.pegsToBools(scale.pegs).map((bool, peg) => {
 					return (
 						<div
-							key={index}
+							key={peg}
+							onClick={togglePeg(peg)}
 							style={{
 								position: "absolute",
 								height: noteSize,
@@ -44,7 +54,7 @@ export class LinearScale extends Component {
 								border: "1px solid black",
 								borderRadius: noteSize,
 								top: 0,
-								left: index * noteSize * margin,
+								left: peg * noteSize * margin,
 							}}
 						/>
 					)
@@ -75,10 +85,11 @@ export class CircleScale extends Component {
 						borderRadius: scaleSize,
 					}}
 				/>
-				{music.pegsToBools(scale.pegs).map((bool, index) => {
+				{music.pegsToBools(scale.pegs).map((bool, peg) => {
 					return (
 						<div
-							key={index}
+							key={peg}
+							onClick={togglePeg(peg)}
 							style={{
 								position: "absolute",
 								height: noteSize,
@@ -87,8 +98,8 @@ export class CircleScale extends Component {
 								boxSizing: "border-box",
 								border: "1px solid black",
 								borderRadius: noteSize,
-								top: -Math.cos(index / 12 * 2 * Math.PI) * radius + radius,
-								left: Math.sin(index / 12 * 2 * Math.PI) * radius + radius,
+								top: -Math.cos(peg / 12 * 2 * Math.PI) * radius + radius,
+								left: Math.sin(peg / 12 * 2 * Math.PI) * radius + radius,
 							}}
 						/>
 					)
@@ -98,6 +109,7 @@ export class CircleScale extends Component {
 	}
 }
 
+// TODO: handle scale base number
 export class PianoScale extends Component {
 	view() {
 		const scale = world.scale.get()
@@ -120,10 +132,12 @@ export class PianoScale extends Component {
 				{Array(7)
 					.fill(0)
 					.map((_, index) => {
-						const bool = pegs[whiteNotes[index]]
+						const peg = whiteNotes[index]
+						const bool = pegs[peg]
 						return (
 							<div
 								key={`white-${index}`}
+								onClick={togglePeg(peg)}
 								style={{
 									position: "absolute",
 									height: pianoHeight,
@@ -142,10 +156,12 @@ export class PianoScale extends Component {
 					.fill(0)
 					.map((_, index) => {
 						const offset = index > 1 ? index + 1 : index
-						const bool = pegs[blackNotes[index]]
+						const peg = blackNotes[index]
+						const bool = pegs[peg]
 						return (
 							<div
 								key={`black-${index}`}
+								onClick={togglePeg(peg)}
 								style={{
 									position: "absolute",
 									height: blackNoteHeight,
