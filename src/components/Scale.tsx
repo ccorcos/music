@@ -6,7 +6,7 @@ import * as music from "../music"
 const selectedColor = "#666"
 const borderColor = "#DDD"
 const noteSize = 30
-const margin = 1.4
+const margin = 1
 
 const togglePeg = (index: number) => () => {
 	world.scale.update(({ base, pegs }) => {
@@ -312,8 +312,8 @@ export class LinearStackScale extends Component {
 										width: noteSize,
 										background: bool ? selectedColor : "white",
 										boxSizing: "border-box",
-										border: `1px solid ${borderColor}`,
-										borderRadius: noteSize,
+										// border: `1px solid ${borderColor}`,
+										// borderRadius: noteSize,
 										top: noteSize * margin * stack,
 										left: index * noteSize * margin,
 									}}
