@@ -6,6 +6,7 @@ interface CounterProps {
 	value: magic.Value<number>
 	min?: number
 	max?: number
+	style?: React.CSSProperties
 }
 
 export default class Counter extends Component<CounterProps> {
@@ -24,11 +25,11 @@ export default class Counter extends Component<CounterProps> {
 		const cantInc =
 			this.props.max === undefined ? false : count >= this.props.max
 		return (
-			<div>
+			<div style={this.props.style}>
 				<button onClick={this.decrement} disabled={cantDec}>
 					{"-"}
 				</button>
-				<span>{count}</span>
+				<span style={{ margin: "0 0.5em" }}>{count}</span>
 				<button onClick={this.increment} disabled={cantInc}>
 					{"+"}
 				</button>

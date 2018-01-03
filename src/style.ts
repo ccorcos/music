@@ -6,9 +6,10 @@ glamor.css.global("html", {
 })
 
 glamor.css.global("body", {
-	padding: 0,
-	margin: "1em 2em",
-	maxWidth: "50em",
+	padding: "2em",
+	margin: "1em auto",
+	with: "100%",
+	maxWidth: "40em",
 	fontFamily: '-apple-system, "Helvetica", "Arial", sans-serif',
 	color: "#444",
 	tabSize: 4,

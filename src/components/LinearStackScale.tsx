@@ -28,7 +28,15 @@ export default class LinearStackScale extends Component {
 		const scaleSize = noteSize * 11 * margin + noteSize
 		return (
 			<div>
-				<Counter value={this.offset} min={0} max={11} />
+				<div style={{ margin: "1em 0" }}>
+					Offset:{" "}
+					<Counter
+						style={{ display: "inline" }}
+						value={this.offset}
+						min={0}
+						max={11}
+					/>
+				</div>
 				<div
 					style={{
 						position: "relative",
