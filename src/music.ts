@@ -33,3 +33,7 @@ export function togglePeg(pegs: Array<number>, index: number): Array<number> {
 	bools[index] = !bools[index]
 	return boolsToPegs(bools)
 }
+
+export function mod(a, b) {
+	return (a % b + b) % b
+}

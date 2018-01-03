@@ -56,21 +56,19 @@ export default class ModeStack extends Component {
 							<div>
 								<Counter
 									value={this.offsets[stack]}
-									min={-84}
-									max={84}
+									min={0}
+									max={12}
 									style={{
 										position: "relative",
 										height: noteSize,
 										top: 4,
 										width: 80,
-										left: -100,
+										left: -120,
 									}}
 								/>
 								{bools.map((bool, index) => {
-									const peg = (12 + index - stackOffset) % 12
-									const pegIdx = bool
-										? scale.pegs.indexOf((12 + index - stackOffset) % 12) + 1
-										: ""
+									const peg = music.mod(index - stackOffset, 12)
+									const pegIdx = bool ? scale.pegs.indexOf(peg) + 1 : ""
 									return (
 										<div
 											key={`${stack}-${peg}`}
