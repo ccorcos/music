@@ -6,8 +6,6 @@ import * as ast from "./article.md"
 import Scale from "./components/Scale"
 import "./style"
 
-console.log(ast)
-
 const components = { Scale }
 
 const renderer = new ReactRenderer({

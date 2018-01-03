@@ -2,12 +2,7 @@
 
 You can find the repo for this demo  and the raw markdown source file.
 
-s
-s
-s
-s
-ss
 
+[Scale]{type: "linear"}
 
-
-s
+[Scale]{type: "circle"}
