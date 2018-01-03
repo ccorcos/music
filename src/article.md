@@ -4,7 +4,7 @@ Here's a scale on a piano.
 
 [PianoScale]{}
 
-We can stretch them out and look at then on a line.
+We can stretch them out and look at them on a line.
 
 [LinearScale]{}
 

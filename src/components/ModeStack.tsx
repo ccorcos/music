@@ -74,7 +74,7 @@ export default class ModeStack extends Component {
 												top: noteSize * margin * stack,
 												left: index * noteSize * margin,
 												textAlign: "center",
-												paddingTop: 4,
+												paddingTop: 5,
 											}}
 										>
 											{pegIdx}
@@ -90,7 +90,6 @@ export default class ModeStack extends Component {
 										position: "relative",
 										height: noteSize,
 										top: 4,
-										width: 80,
 										left: scaleSize + noteSize / 2,
 									}}
 								/>
