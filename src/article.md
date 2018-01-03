@@ -25,26 +25,27 @@ Notice that drawing a line of fourths (5 offset) makes the 7th mode of the major
 [LinearStackScale]{size: 20, offset: 6}
 
 [LinearStackScale]{
-	size: 20,
-	offset: 5,
-	style: {display: "inline-block", marginRight: "2em"}
+size: 20,
+offset: 5,
+style: {display: "inline-block", marginRight: "2em"}
 }
 [LinearStackScale]{
-	size: 20,
-	offset: 7,
-	style: {display: "inline-block", marginRight: "2em"}
+size: 20,
+offset: 7,
+style: {display: "inline-block", marginRight: "2em"}
 }
-
-
 
 [LinearStackScale]{
-	size: 20,
-	offset: 4,
-	style: {display: "inline-block", marginRight: "2em"}
+size: 20,
+offset: 4,
+style: {display: "inline-block", marginRight: "2em"}
 }
 [LinearStackScale]{
-	size: 20,
-	offset: 8,
-	style: {display: "inline-block", marginRight: "2em"}
+size: 20,
+offset: 8,
+style: {display: "inline-block", marginRight: "2em"}
 }
 
+Here, the offset in each row is adjustable to see how different modes of the same notes line up. The numbers on the tiles are arbitrary, and change upon selection, but useful for alignment.
+
+[ModeStack]{}
