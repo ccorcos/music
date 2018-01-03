@@ -1,18 +1,20 @@
-# Explorable Explanations with Markdown [[Demo](https://ccorcos.github.io/explorable/)]
+# Music
 
-This repo shows how easy it is to create [explorable explanations](http://explorabl.es/) with markdown.
 
-This project uses a markdown syntax `[ComponentName]{prop: "value"}` to render React components inline!
+## To do
 
-## Getting Started
+- generalized notes visualizations
+	- linear can wrap around at various intervals like a guitar
+	- circle forms a 3d spiral
+		- circle can change the "root" note to slide through the notes
+	- piano shows all 80 keys
+	- guitar shows a full neck
 
-If you want to make your own explorable explanation using this repo...
+- toggle between multiple scales
+- toggle between visualization types
+- some synth noises / helpers
 
-```sh
-npm install
-npm start
-```
+- explore shapes defined by circle
+- explore share defined by linear offsets
 
-Write your article in `article.md` and import any components you want to use in `index.tsx`.
-
-When you want to publish, run `npm run release` and the page will appear in `<username>.github.io/<project>`.
+- derive scales from FFT

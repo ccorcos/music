@@ -1,11 +1,3 @@
-// TODO
-// - some universal types / abstractions
-// - some synth noises / helpers
-// - some visualiations, linear, circle, piano, guitar, notes, scale
-
-// More features
-// - multiple scales to toggle between.
-
 export interface Notes {
 	// A list of midi notes
 	notes: Array<string>

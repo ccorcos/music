@@ -183,7 +183,9 @@ export class PianoScale extends Component {
 export class GuitarScale extends Component {
 	view() {
 		const scale = world.scale.get()
-		const scaleSize = noteSize * 4 * margin + noteSize
+		const guitarNoteSize = noteSize * 0.7
+		const fretMargin = margin * 1.8
+		const scaleSize = guitarNoteSize * 4 * fretMargin + guitarNoteSize
 		const bools = music.pegsToBools(scale.pegs)
 		const strings = [bools.slice(0, 5), bools.slice(5, 10), bools.slice(10, 13)]
 		return (
@@ -191,16 +193,16 @@ export class GuitarScale extends Component {
 				style={{
 					position: "relative",
 					width: scaleSize,
-					height: noteSize * margin * 2 + noteSize,
+					height: guitarNoteSize * margin * 2 + guitarNoteSize,
 				}}
 			>
 				<div
 					style={{
 						position: "absolute",
 						height: 0,
-						width: scaleSize - noteSize,
-						top: noteSize / 2 - 0.5,
-						left: noteSize / 2,
+						width: scaleSize - guitarNoteSize,
+						top: guitarNoteSize / 2 - 0.5,
+						left: guitarNoteSize / 2,
 						border: "0.5px solid black",
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
@@ -210,9 +212,9 @@ export class GuitarScale extends Component {
 					style={{
 						position: "absolute",
 						height: 0,
-						width: scaleSize - noteSize,
-						top: noteSize * margin + noteSize / 2 - 0.5,
-						left: noteSize / 2,
+						width: scaleSize - guitarNoteSize,
+						top: guitarNoteSize * margin + guitarNoteSize / 2 - 0.5,
+						left: guitarNoteSize / 2,
 						border: "0.5px solid black",
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
@@ -222,9 +224,9 @@ export class GuitarScale extends Component {
 					style={{
 						position: "absolute",
 						height: 0,
-						width: noteSize,
-						top: noteSize * margin * 2 + noteSize / 2 - 0.5,
-						left: noteSize / 2,
+						width: guitarNoteSize * fretMargin,
+						top: guitarNoteSize * margin * 2 + guitarNoteSize / 2 - 0.5,
+						left: guitarNoteSize / 2,
 						border: "0.5px solid black",
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
@@ -239,14 +241,14 @@ export class GuitarScale extends Component {
 								onClick={togglePeg(peg)}
 								style={{
 									position: "absolute",
-									height: noteSize,
-									width: noteSize,
+									height: guitarNoteSize,
+									width: guitarNoteSize,
 									background: bool ? selected : "white",
 									boxSizing: "border-box",
 									border: "1px solid black",
-									borderRadius: noteSize,
-									top: string * noteSize * margin,
-									left: index * noteSize * margin,
+									borderRadius: guitarNoteSize,
+									top: string * guitarNoteSize * margin,
+									left: index * guitarNoteSize * fretMargin,
 								}}
 							/>
 						)
