@@ -17,6 +17,10 @@ const togglePeg = (index: number) => () => {
 	})
 }
 
+const calcOffset = (index: number, offset: number): number => {
+	return music.mod(index - offset, 12)
+}
+
 export default class ModeStack extends Component {
 	offsets = [
 		new magic.Value(7),
@@ -33,7 +37,7 @@ export default class ModeStack extends Component {
 		const width = 12
 		const offsets = this.offsets.map(offset => offset.get())
 		const scale = world.scale.get()
-		const scaleSize = noteSize * 11 * margin + noteSize
+		const scaleSize = 12 * noteSize
 		return (
 			<div
 				style={{
@@ -50,24 +54,12 @@ export default class ModeStack extends Component {
 						// Rotate the bools
 						let bools = music.pegsToBools(scale.pegs)
 						bools = bools
-							.slice(12 - stackOffset)
-							.concat(bools.slice(0, 12 - stackOffset))
+							.slice(calcOffset(12, stackOffset))
+							.concat(bools.slice(0, calcOffset(12, stackOffset)))
 						return (
-							<div>
-								<Counter
-									value={this.offsets[stack]}
-									min={0}
-									max={12}
-									style={{
-										position: "relative",
-										height: noteSize,
-										top: 4,
-										width: 80,
-										left: -120,
-									}}
-								/>
+							<div key={stack}>
 								{bools.map((bool, index) => {
-									const peg = music.mod(index - stackOffset, 12)
+									const peg = calcOffset(index, stackOffset)
 									const pegIdx = bool ? scale.pegs.indexOf(peg) + 1 : ""
 									return (
 										<div
@@ -89,6 +81,19 @@ export default class ModeStack extends Component {
 										</div>
 									)
 								})}
+								<Counter
+									value={this.offsets[stack]}
+									key={`counter-${stack}`}
+									min={-84}
+									max={84}
+									style={{
+										position: "relative",
+										height: noteSize,
+										top: 4,
+										width: 80,
+										left: scaleSize + noteSize / 2,
+									}}
+								/>
 							</div>
 						)
 					})}
