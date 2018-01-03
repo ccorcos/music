@@ -3,7 +3,8 @@ import Component from "reactive-magic/component"
 import * as world from "../world"
 import * as music from "../music"
 
-const selected = "#666"
+const selectedColor = "#666"
+const borderColor = "#DDD"
 const noteSize = 30
 const margin = 1.4
 
@@ -35,7 +36,7 @@ export class LinearScale extends Component {
 						width: scaleSize - noteSize,
 						top: noteSize / 2 - 0.5,
 						left: noteSize / 2,
-						border: "0.5px solid black",
+						border: `0.5px solid ${borderColor}`,
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
 					}}
@@ -49,9 +50,9 @@ export class LinearScale extends Component {
 								position: "absolute",
 								height: noteSize,
 								width: noteSize,
-								background: bool ? selected : "white",
+								background: bool ? selectedColor : "white",
 								boxSizing: "border-box",
-								border: "1px solid black",
+								border: `1px solid ${borderColor}`,
 								borderRadius: noteSize,
 								top: 0,
 								left: peg * noteSize * margin,
@@ -80,7 +81,7 @@ export class CircleScale extends Component {
 						width: scaleSize - noteSize,
 						top: noteSize / 2,
 						left: noteSize / 2,
-						border: "1px solid black",
+						border: `1px solid ${borderColor}`,
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
 					}}
@@ -94,9 +95,9 @@ export class CircleScale extends Component {
 								position: "absolute",
 								height: noteSize,
 								width: noteSize,
-								background: bool ? selected : "white",
+								background: bool ? selectedColor : "white",
 								boxSizing: "border-box",
-								border: "1px solid black",
+								border: `1px solid ${borderColor}`,
 								borderRadius: noteSize,
 								top: -Math.cos(peg / 12 * 2 * Math.PI) * radius + radius,
 								left: Math.sin(peg / 12 * 2 * Math.PI) * radius + radius,
@@ -142,10 +143,10 @@ export class PianoScale extends Component {
 									position: "absolute",
 									height: pianoHeight,
 									width: whiteNoteWidth,
-									background: bool ? selected : "white",
+									background: bool ? selectedColor : "white",
 									boxSizing: "border-box",
-									border: "1px solid black",
-									borderLeft: index === 0 ? "1px solid black" : "none",
+									border: `1px solid ${borderColor}`,
+									borderLeft: index === 0 ? `1px solid ${borderColor}` : "none",
 									top: 0,
 									left: index * whiteNoteWidth,
 								}}
@@ -166,9 +167,9 @@ export class PianoScale extends Component {
 									position: "absolute",
 									height: blackNoteHeight,
 									width: blackNoteWidth,
-									background: bool ? selected : "black",
+									background: bool ? selectedColor : "black",
 									boxSizing: "border-box",
-									border: "1px solid black",
+									border: `1px solid ${borderColor}`,
 									top: 0,
 									left: (offset + 1) * whiteNoteWidth - blackNoteWidth / 2,
 								}}
@@ -183,9 +184,7 @@ export class PianoScale extends Component {
 export class GuitarScale extends Component {
 	view() {
 		const scale = world.scale.get()
-		const guitarNoteSize = noteSize * 0.7
-		const fretMargin = margin * 1.8
-		const scaleSize = guitarNoteSize * 4 * fretMargin + guitarNoteSize
+		const scaleSize = noteSize * 4 * margin + noteSize
 		const bools = music.pegsToBools(scale.pegs)
 		const strings = [bools.slice(0, 5), bools.slice(5, 10), bools.slice(10, 13)]
 		return (
@@ -193,17 +192,17 @@ export class GuitarScale extends Component {
 				style={{
 					position: "relative",
 					width: scaleSize,
-					height: guitarNoteSize * margin * 2 + guitarNoteSize,
+					height: noteSize * margin * 2 + noteSize,
 				}}
 			>
 				<div
 					style={{
 						position: "absolute",
 						height: 0,
-						width: scaleSize - guitarNoteSize,
-						top: guitarNoteSize / 2 - 0.5,
-						left: guitarNoteSize / 2,
-						border: "0.5px solid black",
+						width: scaleSize - noteSize,
+						top: noteSize / 2 - 0.5,
+						left: noteSize / 2,
+						border: `0.5px solid ${borderColor}`,
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
 					}}
@@ -212,10 +211,10 @@ export class GuitarScale extends Component {
 					style={{
 						position: "absolute",
 						height: 0,
-						width: scaleSize - guitarNoteSize,
-						top: guitarNoteSize * margin + guitarNoteSize / 2 - 0.5,
-						left: guitarNoteSize / 2,
-						border: "0.5px solid black",
+						width: scaleSize - noteSize,
+						top: noteSize * margin + noteSize / 2 - 0.5,
+						left: noteSize / 2,
+						border: `0.5px solid ${borderColor}`,
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
 					}}
@@ -224,10 +223,10 @@ export class GuitarScale extends Component {
 					style={{
 						position: "absolute",
 						height: 0,
-						width: guitarNoteSize * fretMargin,
-						top: guitarNoteSize * margin * 2 + guitarNoteSize / 2 - 0.5,
-						left: guitarNoteSize / 2,
-						border: "0.5px solid black",
+						width: noteSize * margin,
+						top: noteSize * margin * 2 + noteSize / 2 - 0.5,
+						left: noteSize / 2,
+						border: `0.5px solid ${borderColor}`,
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
 					}}
@@ -241,14 +240,14 @@ export class GuitarScale extends Component {
 								onClick={togglePeg(peg)}
 								style={{
 									position: "absolute",
-									height: guitarNoteSize,
-									width: guitarNoteSize,
-									background: bool ? selected : "white",
+									height: noteSize,
+									width: noteSize,
+									background: bool ? selectedColor : "white",
 									boxSizing: "border-box",
-									border: "1px solid black",
-									borderRadius: guitarNoteSize,
-									top: string * guitarNoteSize * margin,
-									left: index * guitarNoteSize * fretMargin,
+									border: `1px solid ${borderColor}`,
+									borderRadius: noteSize,
+									top: string * noteSize * margin,
+									left: index * noteSize * margin,
 								}}
 							/>
 						)
@@ -259,8 +258,76 @@ export class GuitarScale extends Component {
 	}
 }
 
+export class LinearStackScale extends Component {
+	view() {
+		const stacks = 12
+		const width = 12
+		const offset = 5
+		const scale = world.scale.get()
+		const scaleSize = noteSize * 11 * margin + noteSize
+		return (
+			<div
+				style={{
+					position: "relative",
+					width: scaleSize,
+					height: scaleSize,
+				}}
+			>
+				{Array(stacks)
+					.fill(0)
+					.map((_, stack) => {
+						return (
+							<div
+								key={`string-${stack}`}
+								style={{
+									position: "absolute",
+									height: 0,
+									width: scaleSize - noteSize,
+									top: noteSize * margin * stack + noteSize / 2 - 0.5,
+									left: noteSize / 2,
+									border: `0.5px solid ${borderColor}`,
+									boxSizing: "border-box",
+									borderRadius: scaleSize,
+								}}
+							/>
+						)
+					})}
+
+				{Array(stacks)
+					.fill(0)
+					.map((_, stack) => {
+						const stackOffset = (stack * offset) % 12
+						// Rotate the bools
+						let bools = music.pegsToBools(scale.pegs)
+						bools = bools.slice(stackOffset).concat(bools.slice(0, stackOffset))
+						return bools.map((bool, index) => {
+							const peg = (stackOffset + index) % 12
+							return (
+								<div
+									key={`${stack}-${peg}`}
+									onClick={togglePeg(peg)}
+									style={{
+										position: "absolute",
+										height: noteSize,
+										width: noteSize,
+										background: bool ? selectedColor : "white",
+										boxSizing: "border-box",
+										border: `1px solid ${borderColor}`,
+										borderRadius: noteSize,
+										top: noteSize * margin * stack,
+										left: index * noteSize * margin,
+									}}
+								/>
+							)
+						})
+					})}
+			</div>
+		)
+	}
+}
+
 interface ScaleProps {
-	type: "linear" | "circle" | "piano" | "guitar"
+	type: "linear" | "circle" | "piano" | "guitar" | "linear-stack"
 }
 
 export default class Scale extends Component<ScaleProps> {
@@ -274,6 +341,8 @@ export default class Scale extends Component<ScaleProps> {
 				return <PianoScale />
 			case "guitar":
 				return <GuitarScale />
+			case "linear-stack":
+				return <LinearStackScale />
 			default:
 				return null
 		}
