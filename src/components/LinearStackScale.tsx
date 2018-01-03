@@ -17,17 +17,24 @@ const togglePeg = (index: number) => () => {
 	})
 }
 
-export default class LinearStackScale extends Component {
-	offset = new magic.Value(5)
+interface LinearStackScaleProps {
+	size?: number
+	offset?: number
+	style?: React.CSSProperties
+}
+
+export default class LinearStackScale extends Component<LinearStackScaleProps> {
+	offset = new magic.Value(this.props.offset || 5)
 
 	view() {
 		const stacks = 12
 		const width = 12
 		const offset = this.offset.get()
 		const scale = world.scale.get()
-		const scaleSize = noteSize * 11 * margin + noteSize
+		const size = this.props.size || noteSize
+		const scaleSize = size * 11 * margin + size
 		return (
-			<div>
+			<div style={this.props.style}>
 				<div style={{ margin: "1em 0" }}>
 					Offset:{" "}
 					<Counter
@@ -53,9 +60,9 @@ export default class LinearStackScale extends Component {
 									style={{
 										position: "absolute",
 										height: 0,
-										width: scaleSize - noteSize,
-										top: noteSize * margin * stack + noteSize / 2 - 0.5,
-										left: noteSize / 2,
+										width: scaleSize - size,
+										top: size * margin * stack + size / 2 - 0.5,
+										left: size / 2,
 										border: `0.5px solid ${borderColor}`,
 										boxSizing: "border-box",
 										borderRadius: scaleSize,
@@ -81,14 +88,14 @@ export default class LinearStackScale extends Component {
 										onClick={togglePeg(peg)}
 										style={{
 											position: "absolute",
-											height: noteSize,
-											width: noteSize,
+											height: size,
+											width: size,
 											background: bool ? selectedColor : "white",
 											boxSizing: "border-box",
 											// border: `1px solid ${borderColor}`,
-											// borderRadius: noteSize,
-											top: noteSize * margin * stack,
-											left: index * noteSize * margin,
+											// borderRadius: size,
+											top: size * margin * stack,
+											left: index * size * margin,
 										}}
 									/>
 								)

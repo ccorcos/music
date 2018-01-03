@@ -22,3 +22,29 @@ Here's a generalization of the linear version, similar to a guitar, where you ca
 
 Notice that drawing a line of fourths (5 offset) makes the 7th mode of the major scale and drawing a line of 5ths (7 offset) makes the 4th mode. They both draw out the pentatonic scale. Interesting because this is these are 2/3 and 3/2 ratios. They also produce scales that are a reflection of each other.
 
+[LinearStackScale]{size: 20, offset: 6}
+
+[LinearStackScale]{
+	size: 20,
+	offset: 5,
+	style: {display: "inline-block", marginRight: "2em"}
+}
+[LinearStackScale]{
+	size: 20,
+	offset: 7,
+	style: {display: "inline-block", marginRight: "2em"}
+}
+
+
+
+[LinearStackScale]{
+	size: 20,
+	offset: 4,
+	style: {display: "inline-block", marginRight: "2em"}
+}
+[LinearStackScale]{
+	size: 20,
+	offset: 8,
+	style: {display: "inline-block", marginRight: "2em"}
+}
+
