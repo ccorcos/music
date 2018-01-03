@@ -6,3 +6,5 @@
 [Scale]{type: "circle"}
 
 [Scale]{type: "piano"}
+
+[Scale]{type: "guitar"}
