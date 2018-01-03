@@ -2,6 +2,9 @@
 
 ## To do
 
+- actual guitar neck
+
+
 - multiple octave sets of notes
 	- display with opacity octaves or other intervals
 - color swatch to set the color of notes
