@@ -17,16 +17,16 @@ const togglePeg = (index: number) => () => {
 
 interface CircleProps {
 	size?: number
-	intervals?: Array<number>
+	intervals?: Array<Array<number>>
 	lineColor?: string
 }
 
 export default class CircleScale extends Component<CircleProps> {
-	didUpdate() {
+	didMount() {
 		this.updateCanvas()
 	}
 
-	didMount() {
+	didUpdate() {
 		this.updateCanvas()
 	}
 
@@ -34,25 +34,23 @@ export default class CircleScale extends Component<CircleProps> {
 		if (!this.props.intervals) return
 		const intervals = this.props.intervals
 		const size = this.props.size || noteSize
+		const radius = size * margin / (2 * Math.PI / 12)
 		const ctx = this.refs.canvas.getContext("2d")
-		const radius = size * margin / (1 / 12 * 2 * Math.PI)
-		let start, end
+		let line
 		ctx.strokeStyle = this.props.lineColor || "blue"
 		ctx.lineWidth = 2
 		ctx.clearRect(0, 0, 2 * radius, 2 * radius)
 
 		intervals.forEach(interval => {
-			start = {
-				x: radius * (1 + Math.sin(Math.PI * interval[0] / 6)),
-				y: radius * (1 - Math.cos(Math.PI * interval[0] / 6)),
-			}
-			end = {
-				x: radius * (1 + Math.sin(Math.PI * interval[1] / 6)),
-				y: radius * (1 - Math.cos(Math.PI * interval[1] / 6)),
-			}
+			line = interval.map(peg => {
+				return {
+					x: radius * (1 + Math.sin(Math.PI * peg / 6)),
+					y: radius * (1 - Math.cos(Math.PI * peg / 6)),
+				}
+			})
 			ctx.beginPath()
-			ctx.moveTo(start.x, start.y)
-			ctx.lineTo(end.x, end.y)
+			ctx.moveTo(line[0].x, line[0].y)
+			ctx.lineTo(line[1].x, line[1].y)
 			ctx.stroke()
 		})
 	}
@@ -60,7 +58,7 @@ export default class CircleScale extends Component<CircleProps> {
 	view() {
 		const scale = world.scale.get()
 		const size = this.props.size || noteSize
-		const radius = size * margin / (1 / 12 * 2 * Math.PI)
+		const radius = size * margin / (2 * Math.PI / 12)
 		const scaleSize = 2 * radius + size
 		return (
 			<div
@@ -90,8 +88,8 @@ export default class CircleScale extends Component<CircleProps> {
 								boxSizing: "border-box",
 								border: `1px solid ${borderColor}`,
 								borderRadius: size,
-								top: -Math.cos(peg / 12 * 2 * Math.PI) * radius + radius,
-								left: Math.sin(peg / 12 * 2 * Math.PI) * radius + radius,
+								top: radius * (1 - Math.cos(2 * Math.PI * peg / 12)),
+								left: radius * (1 + Math.sin(2 * Math.PI * peg / 12)),
 							}}
 						/>
 					)
@@ -106,7 +104,7 @@ export default class CircleScale extends Component<CircleProps> {
 						left: size / 2,
 					}}
 				/>
-				{Array(12)
+				{Array(12) //invisible togglePeg buttons that float over canvas
 					.fill(0)
 					.map((_, peg) => {
 						return (
@@ -121,8 +119,8 @@ export default class CircleScale extends Component<CircleProps> {
 									boxSizing: "border-box",
 									borderRadius: size,
 									zIndex: 1,
-									top: -Math.cos(peg / 12 * 2 * Math.PI) * radius + radius,
-									left: Math.sin(peg / 12 * 2 * Math.PI) * radius + radius,
+									top: radius * (1 - Math.cos(2 * Math.PI * peg / 12)),
+									left: radius * (1 + Math.sin(2 * Math.PI * peg / 12)),
 								}}
 							/>
 						)

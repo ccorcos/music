@@ -7,9 +7,11 @@ import CircleScale from "./CircleScale"
 
 const intervalColor = ["red", "blue", "green", "orange", "indigo", "purple"]
 
-const calcIntervals = (scale: music.Scale): Array<Array<number>> => {
+const calcIntervals = (scale: music.Scale): Array<Array<Array<number>>> => {
 	const { pegs } = scale
-	const intervals = new Array(6).fill(0).map(_ => new Array())
+	const intervals = Array(6)
+		.fill(0)
+		.map(_ => new Array())
 	let diff
 	for (let i = 0; i < pegs.length; i++) {
 		for (let j = i + 1; j < pegs.length; j++) {
@@ -32,7 +34,7 @@ export default class IntervalCounter extends Component {
 					position: "relative",
 				}}
 			>
-				{intervals.map((interval, index) => {
+				{intervals.map((intervalSet, index) => {
 					return (
 						<div
 							key={index}
@@ -49,11 +51,11 @@ export default class IntervalCounter extends Component {
 									fontSize: "1.2em",
 								}}
 							>
-								{interval.length}
+								{intervalSet.length}
 							</div>
 							<CircleScale
 								size={20}
-								intervals={interval}
+								intervals={intervalSet}
 								lineColor={intervalColor[index]}
 							/>
 						</div>
