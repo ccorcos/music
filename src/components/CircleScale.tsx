@@ -82,7 +82,6 @@ export default class CircleScale extends Component<CircleProps> {
 					return (
 						<div
 							key={peg}
-							onClick={togglePeg(peg)}
 							style={{
 								position: "absolute",
 								height: size,
@@ -107,6 +106,27 @@ export default class CircleScale extends Component<CircleProps> {
 						left: size / 2,
 					}}
 				/>
+				{Array(12)
+					.fill(0)
+					.map((_, peg) => {
+						return (
+							<div
+								key={peg}
+								onClick={togglePeg(peg)}
+								style={{
+									position: "absolute",
+									height: size,
+									width: size,
+									background: "transparent",
+									boxSizing: "border-box",
+									borderRadius: size,
+									zIndex: 1,
+									top: -Math.cos(peg / 12 * 2 * Math.PI) * radius + radius,
+									left: Math.sin(peg / 12 * 2 * Math.PI) * radius + radius,
+								}}
+							/>
+						)
+					})}
 			</div>
 		)
 	}
