@@ -10,6 +10,7 @@ import PianoScale from "./components/PianoScale"
 import GuitarScale from "./components/GuitarScale"
 import LinearStackScale from "./components/LinearStackScale"
 import ModeStack from "./components/ModeStack"
+import IntervalCounter from "./components/IntervalCounter"
 
 const components = {
 	LinearScale,
@@ -18,6 +19,7 @@ const components = {
 	GuitarScale,
 	LinearStackScale,
 	ModeStack,
+	IntervalCounter,
 }
 
 const renderer = new ReactRenderer({

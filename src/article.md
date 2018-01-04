@@ -10,7 +10,9 @@ We can stretch them out and look at them on a line.
 
 Or we can wrap them on a circle.
 
-[CircleScale]{}
+[CircleScale]{
+size: 30
+}
 
 Here's what they'd look like in an octave on a guitar.
 
@@ -49,3 +51,7 @@ style: {display: "inline-block", marginRight: "2em"}
 Here, the offset in each row is adjustable to see how different modes of the same notes line up. The numbers on the tiles are arbitrary, and change upon selection, but useful for alignment.
 
 [ModeStack]{}
+
+We can also check out how many of each type of interval live in a given selection of notes.
+
+[IntervalCounter]{}

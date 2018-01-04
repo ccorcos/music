@@ -15,11 +15,53 @@ const togglePeg = (index: number) => () => {
 	})
 }
 
-export default class CircleScale extends Component {
+interface CircleProps {
+	size?: number
+	intervals?: Array<number>
+	lineColor?: string
+}
+
+export default class CircleScale extends Component<CircleProps> {
+	didUpdate() {
+		this.updateCanvas()
+	}
+
+	didMount() {
+		this.updateCanvas()
+	}
+
+	updateCanvas() {
+		if (!this.props.intervals) return
+		const intervals = this.props.intervals
+		const size = this.props.size || noteSize
+		const ctx = this.refs.canvas.getContext("2d")
+		const radius = size * margin / (1 / 12 * 2 * Math.PI)
+		let start, end
+		ctx.strokeStyle = this.props.lineColor || "blue"
+		ctx.lineWidth = 2
+		ctx.clearRect(0, 0, 2 * radius, 2 * radius)
+
+		intervals.forEach(interval => {
+			start = {
+				x: radius * (1 + Math.sin(Math.PI * interval[0] / 6)),
+				y: radius * (1 - Math.cos(Math.PI * interval[0] / 6)),
+			}
+			end = {
+				x: radius * (1 + Math.sin(Math.PI * interval[1] / 6)),
+				y: radius * (1 - Math.cos(Math.PI * interval[1] / 6)),
+			}
+			ctx.beginPath()
+			ctx.moveTo(start.x, start.y)
+			ctx.lineTo(end.x, end.y)
+			ctx.stroke()
+		})
+	}
+
 	view() {
 		const scale = world.scale.get()
-		const radius = noteSize * margin / (1 / 12 * 2 * Math.PI)
-		const scaleSize = 2 * radius + noteSize
+		const size = this.props.size || noteSize
+		const radius = size * margin / (1 / 12 * 2 * Math.PI)
+		const scaleSize = 2 * radius + size
 		return (
 			<div
 				style={{ position: "relative", width: scaleSize, height: scaleSize }}
@@ -27,10 +69,10 @@ export default class CircleScale extends Component {
 				<div
 					style={{
 						position: "absolute",
-						height: scaleSize - noteSize,
-						width: scaleSize - noteSize,
-						top: noteSize / 2,
-						left: noteSize / 2,
+						height: scaleSize - size,
+						width: scaleSize - size,
+						top: size / 2,
+						left: size / 2,
 						border: `1px solid ${borderColor}`,
 						boxSizing: "border-box",
 						borderRadius: scaleSize,
@@ -43,18 +85,28 @@ export default class CircleScale extends Component {
 							onClick={togglePeg(peg)}
 							style={{
 								position: "absolute",
-								height: noteSize,
-								width: noteSize,
+								height: size,
+								width: size,
 								background: bool ? selectedColor : "white",
 								boxSizing: "border-box",
 								border: `1px solid ${borderColor}`,
-								borderRadius: noteSize,
+								borderRadius: size,
 								top: -Math.cos(peg / 12 * 2 * Math.PI) * radius + radius,
 								left: Math.sin(peg / 12 * 2 * Math.PI) * radius + radius,
 							}}
 						/>
 					)
 				})}
+				<canvas
+					ref="canvas"
+					width={2 * radius}
+					height={2 * radius}
+					style={{
+						position: "relative",
+						top: size / 2,
+						left: size / 2,
+					}}
+				/>
 			</div>
 		)
 	}

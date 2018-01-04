@@ -30,10 +30,15 @@ export default class ModeStack extends Component {
 		new magic.Value(3),
 		new magic.Value(8),
 		new magic.Value(1),
+		new magic.Value(6),
+		new magic.Value(11),
+		new magic.Value(4),
+		new magic.Value(9),
+		new magic.Value(2),
 	]
 
 	view() {
-		const stacks = 7
+		const stacks = 12
 		const width = 12
 		const offsets = this.offsets.map(offset => offset.get())
 		const scale = world.scale.get()
