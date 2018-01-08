@@ -30,12 +30,24 @@ export default class CircleScale extends Component<CircleProps> {
 		this.updateCanvas()
 	}
 
+	canvas: HTMLCanvasElement | null
+
+	handleRef = (ref: HTMLCanvasElement | null) => {
+		this.canvas = ref
+	}
+
 	updateCanvas() {
 		if (!this.props.intervals) return
 		const intervals = this.props.intervals
 		const size = this.props.size || noteSize
 		const radius = size * margin / (2 * Math.PI / 12)
-		const ctx = this.refs.canvas.getContext("2d")
+		if (!this.canvas) {
+			return
+		}
+		const ctx = this.canvas.getContext("2d")
+		if (!ctx) {
+			return
+		}
 		let line
 		ctx.strokeStyle = this.props.lineColor || "blue"
 		ctx.lineWidth = 2
@@ -95,7 +107,7 @@ export default class CircleScale extends Component<CircleProps> {
 					)
 				})}
 				<canvas
-					ref="canvas"
+					ref={this.handleRef}
 					width={2 * radius}
 					height={2 * radius}
 					style={{
